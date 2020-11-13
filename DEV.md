@@ -55,3 +55,14 @@ Edit `ingress-srv.yaml` located in `infra/k8s` change `host` at line `10` to the
 \- host: `example.dev`
 
 Now open chrome and go to `example.dev` and click anywhere on screen enter `thisisunsafe`
+
+
+### Connect to google cloud
+
+```bash
+gcloud init
+```
+
+```bash
+gcloud container clusters get-credentials <project-id>
+```
