@@ -59,6 +59,8 @@ Now open chrome and go to `example.dev` and click anywhere on screen enter `this
 
 ### Connect to google cloud
 
+Create a google kubernetes cluster and connect to project by running
+
 ```bash
 gcloud init
 ```
@@ -66,3 +68,5 @@ gcloud init
 ```bash
 gcloud container clusters get-credentials <project-id>
 ```
+
+#### Update Skaffold for cloud
