@@ -5,8 +5,12 @@ export interface UserAttrs {
   password: string;
 }
 
-export interface UserModel extends mongoose.Model<any> {
-  build(attrs: UserAttrs): any;
+export interface UserDoc extends mongoose.Document {
+  email: string;
+  password: string;
 }
 
-
+// interface for the properties that a User Model has
+export interface UserModel extends mongoose.Model<UserDoc> {
+  build(attrs: UserAttrs): UserDoc;
+}
