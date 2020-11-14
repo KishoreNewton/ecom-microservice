@@ -1,12 +1,13 @@
 POST https://ticketing.dev/api/users/signup HTTP/1.1
 content-type: application/json
-
+# Should throw an Error
 {
     "email": "skksks",
     "password": "1"
 }
 
 ###
+#Should create a user successfully 
 
 POST https://ticketing.dev/api/users/signup HTTP/1.1
 content-type: application/json

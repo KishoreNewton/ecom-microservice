@@ -69,4 +69,4 @@ gcloud init
 gcloud container clusters get-credentials <project-id>
 ```
 
-#### Update Skaffold for cloud
+**Update Skaffold for cloud**
