@@ -14,11 +14,12 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signupRouter);
 app.use(signoutRouter);
-app.use(errorHandler);
 
 app.get('*', () => {
   throw new NotFoundError();
 });
+
+app.use(errorHandler);
 
 const port: 3000 = 3000;
 app.listen(port, () => {
