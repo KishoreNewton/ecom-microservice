@@ -6,6 +6,9 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
+import mongoose from 'mongoose';
+import { DatabaseConnectionError } from './errors/database-connection-error';
+import { cookie } from 'express-validator';
 
 const app = express();
 app.use(json());
@@ -22,7 +25,21 @@ app.all('*', async (req, res, next) => {
 
 app.use(errorHandler);
 
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
+  } catch (err) {
+    throw new DatabaseConnectionError();
+  }
+};
+
 const port: 3000 = 3000;
 app.listen(port, () => {
   console.log(`🔥🔥🔥 Listening on port ${port} 🔥🔥🔥`);
 });
+
+start();
