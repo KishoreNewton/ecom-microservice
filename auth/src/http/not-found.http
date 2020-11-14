@@ -1,2 +1,7 @@
 # Shoud throw not found error
 GET https://ticketing.dev/api/users/signup/someunknowfile HTTP/1.1
+
+###
+
+# Shoud throw not found error
+POST  https://ticketing.dev/api/users/signup/someunknowfile HTTP/1.1
