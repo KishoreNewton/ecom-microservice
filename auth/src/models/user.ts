@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UserAttrs } from '../interface/user-interface';
+import { UserAttrs, UserModel } from '../interface/user-model-interface';
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -11,13 +11,15 @@ const userSchema = new mongoose.Schema({
     required: true
   }
 });
-
-const User = mongoose.model('User', userSchema);
-
-const buildUser = (attrs: UserAttrs) => {
+userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };
 
+const User = mongoose.model<any, UserModel>('User', userSchema);
 
+User.build({
+    email: "test@test.com",
+    password: "passord"
+});
 
-export { User, buildUser };
+export { User };
