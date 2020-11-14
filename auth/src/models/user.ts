@@ -14,4 +14,10 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-export { User };
+const buildUser = (attrs: UserAttrs) => {
+  return new User(attrs);
+};
+
+
+
+export { User, buildUser };
