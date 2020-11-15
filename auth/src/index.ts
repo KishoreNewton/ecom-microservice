@@ -19,8 +19,8 @@ app.use(signupRouter);
 app.use(signoutRouter);
 
 app.all('*', async (req, res, next) => {
-  // next(new NotFoundError()); // Using async
-  throw new NotFoundError(); // Using sync + required library npm install express-async-errors
+  next(new NotFoundError()); // Using async
+  // throw new NotFoundError(); // Using sync + required library npm install express-async-errors
 });
 
 app.use(errorHandler);
