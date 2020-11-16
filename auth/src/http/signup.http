@@ -14,6 +14,6 @@ POST https://ticketing.dev/api/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "exassmple@gmail.com",
+    "email": "exmpple@gmail.com",
     "password": "PasswordHere"
 }
