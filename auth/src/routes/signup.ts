@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import jwt from 'jsonwebtoken';
 import { RequestValidationError } from '../errors/request-validation-error';
+import { BadRequestError } from '../errors/bad-request-error';
 import { User } from '../models/user';
 
 const router = express.Router();
@@ -19,11 +21,7 @@ router.post(
 
     if (!errors.isEmpty()) {
       // throw new NotFoundError(); // Using sync + required library npm install express-async-errors
-      try{
-        return next(new RequestValidationError(errors.array())); // Using async
-      } catch (err) {
-        console.log(err)
-      }
+      return next(new RequestValidationError(errors.array())); // Using async
     }
 
     const { email, password } = req.body;
@@ -31,8 +29,7 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      console.log('Email in use');
-      return res.send({});
+      return next(new BadRequestError('E-Mail in use'));
     }
 
     const user = User.build({
@@ -41,6 +38,19 @@ router.post(
     });
 
     await user.save();
+
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: user.id,
+        email: user.email
+      },
+      process.env.JWT_KEY!
+    );
+    // Store it on session object
+    req.session = {
+      jwt: userJwt
+    };
 
     res.status(201).send(user);
   }
