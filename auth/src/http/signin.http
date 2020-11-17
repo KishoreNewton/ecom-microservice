@@ -1,7 +1,17 @@
+# Show throw error Invalid Credentials
 POST  https://ticketing.dev/api/users/signin HTTP/1.1
 content-type: application/json
 
 {
-    "email": "example@example.com",
+    "email": "smaple",
+    "password": ""
+}
+
+### 
+POST  https://ticketing.dev/api/users/signin HTTP/1.1
+content-type: application/json
+
+{
+    "email": "smaple@example.com",
     "password": "PasswordHere"
 }
