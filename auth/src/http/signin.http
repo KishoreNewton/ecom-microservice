@@ -1,0 +1,7 @@
+POST  https://ticketing.dev/api/users/signin HTTP/1.1
+content-type: application/json
+
+{
+    "email": "example@example.com",
+    "password": "PasswordHere"
+}
